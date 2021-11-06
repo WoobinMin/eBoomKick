@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 523130270}
   - component: {fileID: 523130268}
   - component: {fileID: 523130267}
+  - component: {fileID: 523130271}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -372,6 +373,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   moveDirection: {x: 0, y: 0}
   anim: {fileID: 0}
+  psm: {fileID: 0}
   jumpPower: 3
   speed: 3
   gourndCheckLayer:
@@ -397,6 +399,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &523130271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523130264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0c28df90331be4e81f7ef4b679816f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6343404769699260451, guid: 41dbc54eed9ae0a4b8c43729271038f1, type: 3}
+  - {fileID: 4795965282415226897, guid: 41abcb19f990fd04a9201220c1d5b656, type: 3}
 --- !u!1 &1125200516
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,9 +569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b128a449b07d2c4184d8bc9f490a54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledAmounts: 64000000
+  pooledAmounts: 640000000a000000
   pooledObjectPrefabs:
   - {fileID: 6816587645556985326, guid: 0df01575e9a0fe74a9cee4ece76b57bd, type: 3}
+  - {fileID: 6343404769699260451, guid: 41dbc54eed9ae0a4b8c43729271038f1, type: 3}
 --- !u!4 &1843975436
 Transform:
   m_ObjectHideFlags: 0

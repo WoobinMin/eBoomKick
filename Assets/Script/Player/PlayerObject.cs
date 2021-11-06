@@ -24,7 +24,7 @@ public class PlayerObject : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        shotTimer.lastTime = 0.2f;
+        shotTimer.lastTime = 0.5f;
         shotTimer.curTime = shotTimer.lastTime;
     }
 

@@ -95,7 +95,7 @@ public class PlayerObject : MonoBehaviour
 
                 this.moveDirection += new Vector2(dir.x, dir.y) * -1f;
 
-                psm.AffectParticle("boom", gunObject.transform, Vector3.zero, Quaternion.Euler(0, 0, AngleDeg + 90));
+                psm.AffectParticle("explosion", gunObject.transform, Vector3.zero, Quaternion.Euler(0, 0, AngleDeg + 90));
             }
         }
         else

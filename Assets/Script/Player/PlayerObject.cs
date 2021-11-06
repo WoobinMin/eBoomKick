@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerObject : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PlayerObject : MonoBehaviour
     [HideInInspector] public Animator anim;
     [HideInInspector] public HP hp;
     [HideInInspector] public AudioSource walkSound;
+    [HideInInspector] public bool canAttacked;
+    [HideInInspector] public bool deadStart;
 
     [Header("PlayerInformation")]
     [Tooltip("Player Jump Power")] public float jumpPower;
@@ -31,12 +35,20 @@ public class PlayerObject : MonoBehaviour
         shotTimer.curTime = shotTimer.lastTime;
         hp.curHP = 100;
         hp.maxHP = 100;
+        canAttacked = true;
+        deadStart = false;
+
+        Animation fadeAnim = GameObject.Find("Fade").GetComponent<Animation>();
+        fadeAnim.Play("Fade_End");
     }
 
     void Update()
     {
         if(CheckDead())
         {
+            if (!deadStart)
+                StartCoroutine(Dead());
+
             return;
         }
         Gravity();
@@ -47,10 +59,19 @@ public class PlayerObject : MonoBehaviour
         transform.Translate(moveDirection * Time.deltaTime);
     }
 
+    public IEnumerator Dead()
+    {
+        deadStart = true;
+        Animation fadeAnim = GameObject.Find("Fade").GetComponent<Animation>();
+        fadeAnim.Play("Fade_Begin");
+        yield return new WaitForSeconds(fadeAnim.GetClip("Fade_Begin").length);
+        SceneManager.LoadScene("FadeScene");
+    }
+
     private bool CheckDead()
     {
         hpBar.fillAmount = (float)hp.curHP / hp.maxHP;
-        if(hp.curHP <= 0)
+        if(hp.curHP <= 0 || this.transform.position.y  < -22f)
         {
             return true;
         }
@@ -130,6 +151,23 @@ public class PlayerObject : MonoBehaviour
             shotTimer.curTime += Time.deltaTime;
         }
 
+    }
+
+    public IEnumerator Attacked()
+    {
+        canAttacked = false;
+        hp.curHP -= 10;
+        anim.SetTrigger("Attacked");
+        sr.DOFade(0.5f, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+        sr.DOFade(1f, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+        sr.DOFade(0.5f, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+        sr.DOFade(1f, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+
+        canAttacked = true;
     }
 
     public bool IsGrounded()

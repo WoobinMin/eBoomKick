@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bullet : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class Bullet : MonoBehaviour
 
             if (collision.gameObject.name.Equals("Blanket"))
             {
-                Debug.Log("Å¬¸®¾î~");
+                SceneManager.LoadScene("FadeScene");
                 this.gameObject.SetActive(false);
                 return;
             }

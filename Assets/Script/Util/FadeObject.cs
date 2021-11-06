@@ -1,17 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
 
-public class Opening : MonoBehaviour
+public class FadeObject : MonoBehaviour
 {
     void Start()
     {
+        SceneManager.LoadScene("GameScene");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
 }

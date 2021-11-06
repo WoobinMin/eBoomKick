@@ -35,9 +35,10 @@ public class RobotBullet : MonoBehaviour
         if (collision != null && collision.gameObject.tag.Equals("Player"))
         {
             PlayerObject player = collision.GetComponent<PlayerObject>();
-            player.GetComponent<Animator>().SetTrigger("Attacked");
-            player.hp.curHP -= 10;
-            this.gameObject.SetActive(false);
+            if (player.canAttacked)
+            {
+                player.StartCoroutine(player.Attacked());
+            }
         }
 
     }

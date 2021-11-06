@@ -33,8 +33,11 @@ public  abstract class ObstacleObject : MonoBehaviour
         else if(collision.gameObject.tag.Equals("Player"))
         {
             PlayerObject player = collision.GetComponent<PlayerObject>();
-            player.GetComponent<Animator>().SetTrigger("Attacked");
-            player.hp.curHP-=10;
+            if(player.canAttacked)
+            {
+                player.StartCoroutine(player.Attacked());
+            }
+
         }
         else if(collision.gameObject.tag.Equals("Wall"))
         {

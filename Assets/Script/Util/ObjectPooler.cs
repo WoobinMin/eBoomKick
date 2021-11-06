@@ -18,11 +18,8 @@ public class ObjectPooler : MonoBehaviour
     {
         if (instance == null)
         {
-            DontDestroyOnLoad(this.gameObject);
             instance = this;
         }
-        else
-            Destroy(this.gameObject);
     }
 
     void Start()

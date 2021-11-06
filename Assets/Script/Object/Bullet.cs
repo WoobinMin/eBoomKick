@@ -23,10 +23,19 @@ public class Bullet : MonoBehaviour
     {
         if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.name.Contains("Bullet"))
         {
+            ParticleSystemMananger.Instance.AffectParticle("explosion", this.transform, Vector3.zero);
+
+            if (collision.gameObject.name.Equals("Blanket"))
+            {
+                Debug.Log("Å¬¸®¾î~");
+                this.gameObject.SetActive(false);
+                return;
+            }
+
+
             var hitColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 1f, 0);
             var rocketColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 2f, 0);
 
-            ParticleSystemMananger.Instance.AffectParticle("explosion", this.transform, Vector3.zero);
 
             foreach (var rocketColl in rocketColls)
             {

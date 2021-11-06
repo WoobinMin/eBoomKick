@@ -25,6 +25,7 @@ public class ObstacleCar : ObstacleObject
             randTimer.curTime += Time.deltaTime;
         }
 
+        this.GetComponent<SpriteRenderer>().flipX = randDir.x > 0;
         this.transform.Translate(randDir * speed * Time.deltaTime);
     }
 

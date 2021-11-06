@@ -24,7 +24,7 @@ public class SoundController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
+        DontDestroyOnLoad(this.gameObject);
     }
 
     [SerializeField] public AC_Sound[] common_clips;

@@ -22,6 +22,7 @@ public class TextEffect : MonoBehaviour
     void Update()
     {
         if (director.state == PlayState.Paused && Input.anyKey) {
+            SoundController.instance.SoundControll("Eff_Positive");
             director.gameObject.SetActive(false);
             transform.DOKill();
             SceneManager.LoadScene(gameSceneName); 

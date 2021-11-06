@@ -33,19 +33,22 @@ public class ParticleSystemMananger : MonoBehaviour
     public void AffectParticle(string token, Transform parent, Vector3 position)
     {
         string name = token + "_particle";
-        foreach (GameObject p in prefabs)
+
+        GameObject particle = ObjectPooler.Instance.GetPooledObject(name);
+        ParticleSystem[] ps = particle.GetComponentsInChildren<ParticleSystem>();
+
+        particle.transform.position = parent.transform.position + position;
+        particle.gameObject.SetActive(true);
+        foreach(var par in ps)
         {
-            if (p.name == name)
-            {
-                var particle = Instantiate(p, position, Quaternion.Euler(0, 0, 0));
-                particle.transform.SetParent(parent);
-                StartCoroutine(DestoryParticle(particle));
-            }
+            par.Play();
         }
+        StartCoroutine(DestoryParticle(particle));
+
     }
     IEnumerator DestoryParticle(GameObject obj)
     {
         yield return new WaitForSeconds(1.0f);
-        Destroy(obj);
+        obj.SetActive(false);
     }
 }

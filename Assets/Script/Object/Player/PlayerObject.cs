@@ -11,6 +11,7 @@ public class PlayerObject : MonoBehaviour
     [HideInInspector] public Timer shotTimer;
     [HideInInspector] public Animator anim;
     [HideInInspector] public HP hp;
+    [HideInInspector] public ParticleSystemMananger psm;
 
     [Header("PlayerInformation")]
     [Tooltip("Player Jump Power")] public float jumpPower;
@@ -24,6 +25,7 @@ public class PlayerObject : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        psm = GetComponent<ParticleSystemMananger>();
         shotTimer.lastTime = 1.5f;
         shotTimer.curTime = shotTimer.lastTime;
     }
@@ -97,6 +99,8 @@ public class PlayerObject : MonoBehaviour
                 reloadImage.fillAmount = 0;
 
                 this.moveDirection += new Vector2(dir.x, dir.y) * -1f;
+
+                psm.AffectParticle("boom", this.transform, Vector3.zero);
             }
         }
         else
@@ -105,7 +109,6 @@ public class PlayerObject : MonoBehaviour
         }
 
     }
-
 
     public bool IsGrounded()
     {

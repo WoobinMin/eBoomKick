@@ -8,7 +8,6 @@ using DG.Tweening;
 
 public class TextEffect : MonoBehaviour
 {
-    public string gameSceneName;
     public PlayableDirector director;
     // Start is called before the first frame update
     void Start()
@@ -22,10 +21,10 @@ public class TextEffect : MonoBehaviour
     void Update()
     {
         if (director.state == PlayState.Paused && Input.anyKey) {
-            SoundController.instance.SoundControll("Eff_Positive");
+            SoundController.instance.SoundControll("Eff_Accept");
             director.gameObject.SetActive(false);
             transform.DOKill();
-            SceneManager.LoadScene(gameSceneName); 
+            SceneManager.LoadScene(0); 
         }
     }
 }

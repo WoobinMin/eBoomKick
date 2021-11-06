@@ -508,6 +508,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: bc0abb91d990fe84aaff5dde522871f8, type: 3}
   - name: Eff_Explosion_Floor
     audioClip: {fileID: 8300000, guid: 59b835dc24aeb8d4cad7c3b5acf09260, type: 3}
+  - name: Eff_Accept
+    audioClip: {fileID: 8300000, guid: 422d04ebc8db9be4ea4ed73bb6928e6c, type: 3}
   BGM: {fileID: 234422356}
   commonAudioSources: []
 --- !u!4 &247218831

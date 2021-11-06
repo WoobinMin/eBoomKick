@@ -33,7 +33,7 @@ public class ObstacleDron : ObstacleObject
 
     void Update()
     {
-        if(curHP <= 0)
+        if(hp.curHP <= 0)
         {
             Dead();
             return;

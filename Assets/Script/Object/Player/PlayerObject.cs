@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerObject : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class PlayerObject : MonoBehaviour
     [HideInInspector] public Vector2 moveDirection;
     [HideInInspector] public Timer shotTimer;
     [HideInInspector] public Animator anim;
+    [HideInInspector] public HP hp;
 
     [Header("PlayerInformation")]
     [Tooltip("Player Jump Power")] public float jumpPower;
     [Tooltip("Player Speed")] public float speed;
     [Tooltip("Ground라고 인식할 Layer")] public LayerMask gourndCheckLayer;
     [Tooltip("Gun Object")] public GameObject gunObject;
+    [Tooltip("Reload Progress Bar")] public Image reloadImage;
 
     void Start()
     {
@@ -76,7 +79,7 @@ public class PlayerObject : MonoBehaviour
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         gunObject.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
         gunObject.GetComponent<SpriteRenderer>().flipY = (AngleDeg > 90 || AngleDeg < -90);
-
+        reloadImage.fillAmount = shotTimer.curTime / shotTimer.lastTime;
 
         if (shotTimer.curTime > shotTimer.lastTime)
         {
@@ -90,6 +93,8 @@ public class PlayerObject : MonoBehaviour
                 bulletCom.speed = 4f;
                 bulletCom.transform.position = this.transform.position;
                 bullet.gameObject.SetActive(true);
+
+                reloadImage.fillAmount = 0;
 
                 this.moveDirection += new Vector2(dir.x, dir.y) * -1f;
             }

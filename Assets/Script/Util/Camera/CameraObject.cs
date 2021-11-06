@@ -9,7 +9,7 @@ public class CameraObject : MonoBehaviour
 
     void Start()
     {
-        cameraMovementStrategy = new FollowTargetCameraMovementStrategy(this, playerTrans, Vector2.up * 3f, 3f);
+        cameraMovementStrategy = new FollowTargetCameraMovementStrategy(this, playerTrans, Vector2.up * 3f, 5f);
     }
 
     void Update()

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public  abstract class ObstacleObject : MonoBehaviour
 {
-    public int curHP;
-    public int maxHP;
+    public HP hp;
 
     public abstract void Movement();
     public abstract void Attack();
@@ -13,10 +12,19 @@ public  abstract class ObstacleObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision != null && collision.gameObject.name.Contains("Bullet"))
+        if (collision == null) return;
+
+        if(collision.gameObject.name.Contains("Bullet"))
         {
             collision.gameObject.SetActive(false);
-            curHP--;
+            hp.curHP--;
+        }
+        else if(collision.gameObject.tag.Equals("Player"))
+        {
+            PlayerObject player = collision.GetComponent<PlayerObject>();
+            player.hp.curHP--;
+            Debug.Log("플레이어 피격");
+
         }
     }
 

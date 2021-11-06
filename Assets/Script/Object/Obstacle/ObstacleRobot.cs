@@ -48,14 +48,14 @@ public class ObstacleRobot : ObstacleObject
 
     void Start()
     {
-        atkTimer.lastTime = 3f;
+        atkTimer.lastTime = 1.5f;
         atkTimer.curTime = atkTimer.lastTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (curHP <= 0)
+        if (hp.curHP <= 0)
         {
             Dead();
             return;

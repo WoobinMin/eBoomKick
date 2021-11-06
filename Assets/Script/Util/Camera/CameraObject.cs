@@ -6,6 +6,7 @@ public class CameraObject : MonoBehaviour
 {
     CameraMovementStrategy cameraMovementStrategy;
     public Transform playerTrans;
+    public BoxCollider2D coll;
 
     void Start()
     {

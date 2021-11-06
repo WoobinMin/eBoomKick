@@ -11,6 +11,7 @@ public class PlayerObject : MonoBehaviour
     [HideInInspector] public Timer shotTimer;
     [HideInInspector] public Animator anim;
     [HideInInspector] public HP hp;
+    [HideInInspector] public AudioSource walkSound;
 
     [Header("PlayerInformation")]
     [Tooltip("Player Jump Power")] public float jumpPower;
@@ -25,6 +26,7 @@ public class PlayerObject : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        walkSound = GetComponentInChildren<AudioSource>();
         shotTimer.lastTime = 0.5f;
         shotTimer.curTime = shotTimer.lastTime;
         hp.curHP = 100;
@@ -60,6 +62,8 @@ public class PlayerObject : MonoBehaviour
         if(IsGrounded())
         {
             float hori = Input.GetAxisRaw("Horizontal");
+
+            walkSound.mute = hori == 0;
             moveDirection.x = hori * speed;
             anim.SetBool("isMove", hori != 0);
             sr.flipX = hori < 0;
@@ -82,6 +86,7 @@ public class PlayerObject : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                SoundController.instance.SoundControll("Eff_Jump");
                 this.moveDirection.y = this.jumpPower;
             }
         }
@@ -113,8 +118,10 @@ public class PlayerObject : MonoBehaviour
 
                 reloadImage.fillAmount = 0;
 
+                if (IsGrounded() && dir.y > 0) dir.y = 0;
                 this.moveDirection += new Vector2(dir.x, dir.y) * -1f;
 
+                SoundController.instance.SoundControll("Eff_Shot");
                 ParticleSystemMananger.Instance.AffectParticle("boom", this.transform, Vector3.zero, Quaternion.Euler(0, 0, AngleDeg+90));
             }
         }

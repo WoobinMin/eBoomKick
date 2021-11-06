@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RobotBullet : MonoBehaviour
 {
-    public Vector2 dir;
     public float speed;
 
     void Start()
@@ -12,9 +11,34 @@ public class RobotBullet : MonoBehaviour
         
     }
 
+    public bool IsTargetVisible()
+    {
+        var planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        var point = this.transform.position;
+        foreach (var plane in planes)
+        {
+            if (plane.GetDistanceToPoint(point) < 0)
+                return false;
+        }
+        return true;
+    }
+
     void Update()
     {
-        dir = dir.normalized;
-        this.transform.Translate(dir * speed * Time.deltaTime);
+        this.transform.Translate(Vector3.right * speed * Time.deltaTime);
+        if (!IsTargetVisible())
+            this.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision != null && collision.gameObject.tag.Equals("Player"))
+        {
+            PlayerObject player = collision.GetComponent<PlayerObject>();
+            player.GetComponent<Animator>().SetTrigger("Attacked");
+            player.hp.curHP -= 10;
+            this.gameObject.SetActive(false);
+        }
+
     }
 }

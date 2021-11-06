@@ -24,7 +24,10 @@ public class ObstacleRobot : ObstacleObject
 
                 GameObject robotBullet = ObjectPooler.Instance.GetPooledObject("Robot_Bullet");
                 RobotBullet robotBulletCom = robotBullet.GetComponent<RobotBullet>();
-                robotBulletCom.dir = atkDir;
+
+                float AngleRad = Mathf.Atan2(atkDir.y, atkDir.x);
+                float AngleDeg = (180 / Mathf.PI) * AngleRad;
+                robotBullet.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
                 robotBullet.transform.position = this.transform.position;
                 robotBullet.gameObject.SetActive(true);
 
@@ -52,9 +55,14 @@ public class ObstacleRobot : ObstacleObject
     // Update is called once per frame
     void Update()
     {
-        if (hp.curHP <= 0) return;
-
+        if (hp.curHP <= 0)
+        {
+            if (!deadSound.isPlaying) deadSound.Play();
+            return;
+        }
         Movement();
         Attack();
+        idleSound.mute = !IsTargetVisible();
+        deadSound.mute = !IsTargetVisible();
     }
 }

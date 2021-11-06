@@ -29,9 +29,15 @@ public class ObstacleDron : ObstacleObject
 
     void Update()
     {
-        if (hp.curHP <= 0) return;
+        if (hp.curHP <= 0)
+        {
+            if (!deadSound.isPlaying) deadSound.Play();
+            return;
+        }
 
         Movement();
         Attack();
+        idleSound.mute = !IsTargetVisible();
+        deadSound.mute = !IsTargetVisible();
     }
 }

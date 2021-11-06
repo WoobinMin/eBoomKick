@@ -7,6 +7,7 @@ public class ObstacleBird : ObstacleObject
     public Vector2 dir;
     public float speed;
 
+
     public override void Attack()
     {
 
@@ -25,9 +26,15 @@ public class ObstacleBird : ObstacleObject
 
     void Update()
     {
-        if (hp.curHP <= 0) return;
-
+        if (hp.curHP <= 0)
+        {
+            if (!deadSound.isPlaying) deadSound.Play();
+            return;
+        }
         Movement();
         Attack();
+        idleSound.mute = !IsTargetVisible();
+        deadSound.mute = !IsTargetVisible();
+
     }
 }

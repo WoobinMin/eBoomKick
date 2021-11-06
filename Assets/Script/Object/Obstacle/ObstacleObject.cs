@@ -6,8 +6,9 @@ public  abstract class ObstacleObject : MonoBehaviour
 {
     [SerializeField] public HP hp;
 
-
     public int parentIndex;
+    public AudioSource idleSound;
+    public AudioSource deadSound;
     public abstract void Movement();
     public abstract void Attack();
 
@@ -34,7 +35,6 @@ public  abstract class ObstacleObject : MonoBehaviour
             PlayerObject player = collision.GetComponent<PlayerObject>();
             player.GetComponent<Animator>().SetTrigger("Attacked");
             player.hp.curHP-=10;
-            Debug.Log("플레이어 피격");
         }
         else if(collision.gameObject.tag.Equals("Wall"))
         {

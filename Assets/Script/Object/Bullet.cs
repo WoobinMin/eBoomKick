@@ -35,8 +35,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.name.Contains("Bullet"))
+        if(!collision.gameObject.tag.Equals("Player") && !collision.gameObject.name.Contains("Bullet")
+            && !collision.gameObject.tag.Equals("BackGround"))
         {
+            SoundController.instance.SoundControll("Eff_Explosion_Floor");
             ParticleSystemMananger.Instance.AffectParticle("explosion", this.transform, Vector3.zero);
 
             if (collision.gameObject.name.Equals("Blanket"))

@@ -24,7 +24,7 @@ public class PlayerObject : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        shotTimer.lastTime = 0.2f;
+        shotTimer.lastTime = 0.5f;
         shotTimer.curTime = shotTimer.lastTime;
     }
 
@@ -32,8 +32,8 @@ public class PlayerObject : MonoBehaviour
     {
         Gravity();
         HorizontalMovement();
-        Shooting();
         Jump();
+        Shooting();
 
         transform.Translate(moveDirection * Time.deltaTime);
     }

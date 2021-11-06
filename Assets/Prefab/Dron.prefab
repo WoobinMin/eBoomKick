@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6455801251047405918}
   - component: {fileID: 6455801251047405919}
   - component: {fileID: 6455801251047405920}
+  - component: {fileID: 6958183053751172182}
   m_Layer: 0
   m_Name: Dron
   m_TagString: Untagged
@@ -45,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03523a282ab67e74e92304bd3339a572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHP: 1
-  maxHP: 1
+  hp:
+    curHP: 1
+    maxHP: 1
   dir: {x: 1, y: 0}
-  speed: 2
+  speed: 1
 --- !u!212 &6455801251047405919
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +91,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300014, guid: d79edf18a76e2654a9ac99f15de8b2b3, type: 3}
+  m_Sprite: {fileID: 7721909697035504222, guid: 1a10087adb7674c4381aeebefee7e752,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,12 +120,31 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4166666, y: 1.9166666}
+    oldSize: {x: 0.8, y: 0.55}
     newSize: {x: 1.4166666, y: 1.9166666}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4166666, y: 1.9166666}
+  m_Size: {x: 0.7, y: 0.49055254}
   m_EdgeRadius: 0
+--- !u!95 &6958183053751172182
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6455801251047405921}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d64eb0955b8211b4fb250f665d75ae6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

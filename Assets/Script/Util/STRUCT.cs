@@ -4,6 +4,7 @@ public struct Timer
     public float lastTime;
 }
 
+[System.Serializable]
 public struct HP
 {
     public int curHP;

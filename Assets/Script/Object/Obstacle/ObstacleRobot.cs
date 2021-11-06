@@ -37,10 +37,6 @@ public class ObstacleRobot : ObstacleObject
         }
     }
 
-    public override void Dead()
-    {
-    }
-
     public override void Movement()
     {
         this.transform.Translate(moveDir * speed * Time.deltaTime);
@@ -55,11 +51,7 @@ public class ObstacleRobot : ObstacleObject
     // Update is called once per frame
     void Update()
     {
-        if (hp.curHP <= 0)
-        {
-            Dead();
-            return;
-        }
+        if (hp.curHP <= 0) return;
 
         Movement();
         Attack();

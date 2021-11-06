@@ -91,8 +91,8 @@ public class PlayerObject : MonoBehaviour
                 GameObject bullet = ObjectPooler.Instance.GetPooledObject("Bullet");
                 Bullet bulletCom = bullet.GetComponent<Bullet>();
 
-                bulletCom.dir = dir;
                 bulletCom.speed = 4f;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
                 bulletCom.transform.position = this.transform.position;
                 bullet.gameObject.SetActive(true);
 

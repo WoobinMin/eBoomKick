@@ -56,14 +56,18 @@ public class ObjectPooler : MonoBehaviour
 
     public GameObject GetPooledObject(string key)
     {
-        for (int i = 0; i < pooledObjects[key].Count; ++i)
+        try
         {
-            if (!pooledObjects[key][i].activeSelf)
+
+            for (int i = 0; i < pooledObjects[key].Count; ++i)
             {
-                return pooledObjects[key][i];
+                if (!pooledObjects[key][i].activeSelf)
+                {
+                    return pooledObjects[key][i];
+                }
             }
         }
-
+        catch { Debug.Log($"{key} 값이 Pooler에 등록되지 않음"); }
         return null;
     }
 

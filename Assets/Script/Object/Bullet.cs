@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public BoxCollider2D coll;
-    public Vector2 dir;
     public float speed;
 
     void Start()
@@ -15,8 +14,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        dir = dir.normalized;
-        this.transform.Translate(dir *speed* Time.deltaTime);
+        this.transform.Translate(Vector3.right *speed* Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,7 +31,7 @@ public class Bullet : MonoBehaviour
                     Debug.Log("RocketPlayer");
                     PlayerObject player = rocketColl.GetComponent<PlayerObject>();
                     Vector3 dir = rocketColl.gameObject.transform.position - this.transform.position;
-
+                    dir = dir.normalized;
                     if(player.IsGrounded())
                     {
                         player.moveDirection += new Vector2(dir.x, dir.y);

@@ -12,10 +12,6 @@ public class ObstacleDron : ObstacleObject
     {
     }
 
-    public override void Dead()
-    {
-    }
-
     public override void Movement()
     {
         if(IsTargetVisible())
@@ -25,7 +21,7 @@ public class ObstacleDron : ObstacleObject
 
             dir = playerTrans.position - this.transform.position;
             dir = dir.normalized;
-            
+            this.GetComponent<SpriteRenderer>().flipX = dir.x < 0;
         }
 
         this.transform.Translate(dir * speed * Time.deltaTime);
@@ -33,11 +29,7 @@ public class ObstacleDron : ObstacleObject
 
     void Update()
     {
-        if(hp.curHP <= 0)
-        {
-            Dead();
-            return;
-        }
+        if (hp.curHP <= 0) return;
 
         Movement();
         Attack();

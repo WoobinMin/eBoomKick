@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2436276361676700439}
   - component: {fileID: 8782966411930592236}
   - component: {fileID: 4321625335763294259}
+  - component: {fileID: 5722266882815348633}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -45,10 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f0c956cac682b40a552c2689d7e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHP: 1
-  maxHP: 1
-  dir: {x: 0, y: 0}
-  speed: 2
+  hp:
+    curHP: 1
+    maxHP: 1
+  dir: {x: 1, y: 0}
+  speed: 1
 --- !u!212 &8782966411930592236
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +91,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5084661014962647745, guid: 2f90eb840bd0cf4438d49759bc08d718,
+  m_Sprite: {fileID: -9148874105567310956, guid: 6e5b1599a70308945967a3ca8712f205,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -114,16 +116,35 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.005305916, y: 0.021223694}
+  m_Offset: {x: -0.0006535202, y: -0.0032014698}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.37, y: 0.37}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6710327, y: 0.9575526}
+  m_Size: {x: 0.3360602, y: 0.32715306}
   m_EdgeRadius: 0
+--- !u!95 &5722266882815348633
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35681105359044201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2ea998c4b1ced640bf7cacca0f8a663, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

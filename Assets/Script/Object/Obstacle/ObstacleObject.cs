@@ -4,11 +4,16 @@ using UnityEngine;
 
 public  abstract class ObstacleObject : MonoBehaviour
 {
-    public HP hp;
+    [SerializeField] public HP hp;
 
     public abstract void Movement();
     public abstract void Attack();
-    public abstract void Dead();
+
+    public virtual void Dead()
+    {
+        if(hp.curHP <= 0)
+            this.gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,15 +21,15 @@ public  abstract class ObstacleObject : MonoBehaviour
 
         if(collision.gameObject.name.Contains("Bullet"))
         {
-            collision.gameObject.SetActive(false);
+            this.GetComponent<Animator>().SetTrigger("Attacked");
             hp.curHP--;
         }
         else if(collision.gameObject.tag.Equals("Player"))
         {
             PlayerObject player = collision.GetComponent<PlayerObject>();
+            player.GetComponent<Animator>().SetTrigger("Attacked");
             player.hp.curHP--;
             Debug.Log("플레이어 피격");
-
         }
     }
 

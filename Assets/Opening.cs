@@ -18,6 +18,6 @@ public class Opening : MonoBehaviour
     void Update()
     {
         if (director.state == PlayState.Paused)
-            SceneManager.LoadScene("99.TestScene");
+            SceneManager.LoadScene("GameScene");
     }
 }

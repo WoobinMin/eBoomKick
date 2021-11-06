@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
 
             if (collision.gameObject.name.Equals("Blanket"))
             {
-                SceneManager.LoadScene("FadeScene");
+                SceneManager.LoadScene("CreditScene");
                 this.gameObject.SetActive(false);
                 return;
             }

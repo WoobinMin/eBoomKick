@@ -5,11 +5,13 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public BoxCollider2D coll;
+    public ParticleSystemMananger psm;
     public float speed;
 
     void Start()
     {
         coll = GetComponent<BoxCollider2D>();
+        psm = GetComponent<ParticleSystemMananger>();
     }
 
     void Update()
@@ -23,6 +25,8 @@ public class Bullet : MonoBehaviour
         {
             var hitColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 1f, 0);
             var rocketColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 2f, 0);
+
+            ParticleSystemMananger.Instance.AffectParticle("explosion", this.transform, Vector3.zero);
 
             foreach (var rocketColl in rocketColls)
             {

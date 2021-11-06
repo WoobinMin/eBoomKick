@@ -5,6 +5,17 @@ using UnityEditor;
 
 public class ParticleSystemMananger : MonoBehaviour
 {
+    private ParticleSystemMananger() { }
+
+    private static ParticleSystemMananger instance;
+    public static ParticleSystemMananger Instance => instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
     [Header("Set Prefabs")]
     public List<GameObject> prefabs = new List<GameObject>();
     private const string prefabFolderPath = "Assets/9_particles/0_Resoureces/Prefab";

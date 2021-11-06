@@ -11,7 +11,6 @@ public class PlayerObject : MonoBehaviour
     [HideInInspector] public Timer shotTimer;
     [HideInInspector] public Animator anim;
     [HideInInspector] public HP hp;
-    [HideInInspector] public ParticleSystemMananger psm;
 
     [Header("PlayerInformation")]
     [Tooltip("Player Jump Power")] public float jumpPower;
@@ -25,7 +24,6 @@ public class PlayerObject : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        psm = GetComponent<ParticleSystemMananger>();
         shotTimer.lastTime = 1.5f;
         shotTimer.curTime = shotTimer.lastTime;
     }
@@ -100,7 +98,7 @@ public class PlayerObject : MonoBehaviour
 
                 this.moveDirection += new Vector2(dir.x, dir.y) * -1f;
 
-                psm.AffectParticle("boom", this.transform, Vector3.zero);
+                ParticleSystemMananger.Instance.AffectParticle("boom", this.transform, Vector3.zero, Quaternion.Euler(0, 0, AngleDeg+90));
             }
         }
         else

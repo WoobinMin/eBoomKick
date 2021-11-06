@@ -12,6 +12,18 @@ public class ObstacleCar : ObstacleObject
     {
     }
 
+
+    public override void Dead()
+    {
+        base.Dead();
+        if (this.hp.curHP <= 0)
+        {
+            PlayerObject player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerObject>();
+            player.hp.curHP = player.hp.maxHP;
+        }
+
+    }
+
     public override void Movement()
     {
         if(randTimer.curTime > randTimer.lastTime)

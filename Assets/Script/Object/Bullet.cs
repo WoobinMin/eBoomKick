@@ -17,6 +17,20 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         this.transform.Translate(Vector3.right *speed* Time.deltaTime);
+        if (!IsTargetVisible())
+            this.gameObject.SetActive(false);
+    }
+
+    public bool IsTargetVisible()
+    {
+        var planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        var point = this.transform.position;
+        foreach (var plane in planes)
+        {
+            if (plane.GetDistanceToPoint(point) < 0)
+                return false;
+        }
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,14 +50,13 @@ public class Bullet : MonoBehaviour
             var hitColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 1f, 0);
             var rocketColls = Physics2D.OverlapBoxAll(this.transform.position, Vector2.one * 2f, 0);
 
-
             foreach (var rocketColl in rocketColls)
             {
                 if(rocketColl.gameObject.tag.Equals("Player"))
                 {
-                    Debug.Log("RocketPlayer");
-                    PlayerObject player = rocketColl.GetComponent<PlayerObject>();
                     Vector3 dir = rocketColl.gameObject.transform.position - this.transform.position;
+                    PlayerObject player = rocketColl.GetComponent<PlayerObject>();
+
                     dir = dir.normalized;
                     if(player.IsGrounded())
                     {
@@ -60,7 +73,7 @@ public class Bullet : MonoBehaviour
             {
                 if (hitColl.gameObject.tag.Equals("Player"))
                 {
-                    Debug.Log("HitPlayer");
+                    hitColl.GetComponent<PlayerObject>().hp.curHP -= 5;
                 }
             }
 

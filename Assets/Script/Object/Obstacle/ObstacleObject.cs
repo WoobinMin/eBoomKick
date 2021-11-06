@@ -6,13 +6,18 @@ public  abstract class ObstacleObject : MonoBehaviour
 {
     [SerializeField] public HP hp;
 
+
+    public int parentIndex;
     public abstract void Movement();
     public abstract void Attack();
 
     public virtual void Dead()
     {
         if(hp.curHP <= 0)
+        {
+            MonsterSpawner.Instance.StartCoroutine(MonsterSpawner.Instance.SpawningSpecificTrans(0f, parentIndex));
             this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,8 +33,13 @@ public  abstract class ObstacleObject : MonoBehaviour
         {
             PlayerObject player = collision.GetComponent<PlayerObject>();
             player.GetComponent<Animator>().SetTrigger("Attacked");
-            player.hp.curHP--;
+            player.hp.curHP-=10;
             Debug.Log("플레이어 피격");
+        }
+        else if(collision.gameObject.tag.Equals("Wall"))
+        {
+            MonsterSpawner.Instance.StartCoroutine(MonsterSpawner.Instance.SpawningSpecificTrans(5f, parentIndex));
+            this.gameObject.SetActive(false);
         }
     }
 

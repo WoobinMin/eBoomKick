@@ -42,6 +42,7 @@ public class ObstacleRobot : ObstacleObject
         this.transform.Translate(moveDir * speed * Time.deltaTime);
     }
 
+
     void Start()
     {
         atkTimer.lastTime = 1.5f;

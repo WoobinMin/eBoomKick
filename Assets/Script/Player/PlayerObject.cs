@@ -17,6 +17,7 @@ public class PlayerObject : MonoBehaviour
     [Tooltip("Player Speed")] public float speed;
     [Tooltip("Ground라고 인식할 Layer")] public LayerMask gourndCheckLayer;
     [Tooltip("Gun Object")] public GameObject gunObject;
+    [Tooltip("HP Bar")] public Image hpBar;
     [Tooltip("Reload Progress Bar")] public Image reloadImage;
 
     void Start()
@@ -26,16 +27,32 @@ public class PlayerObject : MonoBehaviour
         anim = GetComponent<Animator>();
         shotTimer.lastTime = 0.5f;
         shotTimer.curTime = shotTimer.lastTime;
+        hp.curHP = 100;
+        hp.maxHP = 100;
     }
 
     void Update()
     {
+        if(CheckDead())
+        {
+            return;
+        }
         Gravity();
         HorizontalMovement();
         Jump();
         Shooting();
 
         transform.Translate(moveDirection * Time.deltaTime);
+    }
+
+    private bool CheckDead()
+    {
+        hpBar.fillAmount = (float)hp.curHP / hp.maxHP;
+        if(hp.curHP <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void HorizontalMovement()

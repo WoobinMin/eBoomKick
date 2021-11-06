@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771171b74768fde419c1a319a4faf2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: OpeningScene
+  nextSceneInd: 1
   director: {fileID: 805558434}
 --- !u!114 &115715173
 MonoBehaviour:

@@ -33,7 +33,8 @@ public class SoundController : MonoBehaviour
 
     private void Start()
     {
-        BGM.Play();
+        if(BGM.ToString() != "null")
+            BGM.Play();
         commonAudioSources = new List<AudioSource>();
         foreach (var clip in common_clips)
         {
@@ -51,7 +52,7 @@ public class SoundController : MonoBehaviour
         foreach(var i  in commonAudioSources)
         {
             if (i.gameObject.name == clipName)
-                i.Play();
+                i?.Play();
         }
     }
 }

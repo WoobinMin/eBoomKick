@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 448101466}
   - component: {fileID: 448101465}
   - component: {fileID: 448101464}
+  - component: {fileID: 448101467}
+  - component: {fileID: 448101468}
   m_Layer: 5
   m_Name: text
   m_TagString: Untagged
@@ -294,6 +296,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 448101462}
   m_CullTransparentMesh: 1
+--- !u!114 &448101467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448101462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771171b74768fde419c1a319a4faf2a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 0}
+--- !u!114 &448101468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448101462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0870aa3a84915fa43a9f6ec0328e6635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  common_clips:
+  - name: Eff_Accept
+    audioClip: {fileID: 8300000, guid: 422d04ebc8db9be4ea4ed73bb6928e6c, type: 3}
+  BGM: {fileID: 0}
+  commonAudioSources: []
 --- !u!1 &1548574433
 GameObject:
   m_ObjectHideFlags: 0

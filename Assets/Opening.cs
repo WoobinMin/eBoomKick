@@ -18,6 +18,9 @@ public class Opening : MonoBehaviour
     void Update()
     {
         if (director.state == PlayState.Paused)
+        {
+            SoundController.instance.BGM.Play();
             SceneManager.LoadScene("GameScene");
+        }
     }
 }

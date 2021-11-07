@@ -29,6 +29,7 @@ public class TextEffect : MonoBehaviour
             if (director.ToString() != "null")
                 director.gameObject.SetActive(false);
             SoundController.instance.SoundControll("Eff_Accept");
+            SoundController.instance.BGM.Stop();
             transform.DOKill();
             SceneManager.LoadScene(nextSceneInd);
         }

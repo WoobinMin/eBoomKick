@@ -56,7 +56,7 @@ public class PlayerObject : MonoBehaviour
         Jump();
         Shooting();
 
-        if (moveDirection.y < -9.8f ) moveDirection.y = -9.8f;
+        if (moveDirection.y < -9.8f / 2f ) moveDirection.y = -9.8f / 2f;
         transform.Translate(moveDirection * Time.deltaTime);
     }
 
